@@ -1,5 +1,5 @@
 from csv import DictReader
-
+import cvs
 data_rdr = DictReader(open('C:/Users/何长乐/Desktop/11/mn.csv', 'rt', encoding="utf-8"))
 header_rdr = DictReader(open('C:/Users/何长乐/Desktop/11/mn_headers.csv', 'rt', encoding="utf-8"))
 data_rows = [d for d in data_rdr]
