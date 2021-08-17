@@ -1,21 +1,36 @@
-from csv import DictReader
+# -*- coding: utf-8 -*-
 
-mn_data_rdr = DictReader(open('mn.csv', 'rt', encoding="utf-8"))
-mn_data = [d for d in mn_data_rdr]
+# --** coding="UTF-8" **--
+import os
+import re
+import sys
 
-# for row in mn_data:
-#     key = '%s-%s' % (row.get('HH1'), row.get('HH2'))
-#     print(key)
-def combine_data_dict(data_rows):
-    data_dict = {}
-    for row in data_rows:
-        key = '%s-%s' % (row.get('HH1'), row.get('HH2'))
-        if key in data_dict.keys():
-            (data_dict[key].append(row))
-        else:
-            data_dict[key] = [row]
-    return data_dict
+foldname = r"./binren"
+    # 举例：r"./neteasy_playlist_data3"
+fileList = os.listdir(foldname)
+    # 输出此文件夹中包含的文件名称
+print( fileList[0])
+    # 得到进程当前工作目录
+currentpath = os.getcwd()
+    # 将当前工作目录修改为待修改文件夹的位置
 
-
-mn_dict = combine_data_dict(mn_data)
-print(len(mn_dict))
+os.chdir(foldname)
+    # 名称变量
+num = 1
+    # 遍历文件夹中所有文件
+for fileName in fileList:
+        # 匹配文件名正则表达式
+    pat = "[\u4e00-\u9fa5]+"
+        # 进行匹配
+    pattern = re.findall(pat, fileName)
+        # 文件重新命名
+    os.rename(fileName, str(num))
+        # 改变编号，继续下一项（拓展名也可修改为其他的）
+    num = num + 1
+print("***************************************")
+    # 改回程序运行前的工作目录
+os.chdir(currentpath)
+    # 刷新
+sys.stdin.flush()
+    # 输出修改后文件夹中包含的文件名称
+print("修改后：" + os.listdir(foldname)[0])
