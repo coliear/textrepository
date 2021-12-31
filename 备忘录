@@ -1,2 +1,3 @@
+********安装chrome步骤*************
 sudo chmod -R 777 google-chrome-stable_current_amd64.deb 
 sudo apt install ./google-chrome-stable_current_amd64.deb
